@@ -1,0 +1,29 @@
+{
+  "name": "studymate-offline",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Privacy-focused, locally runnable AI study companion for students",
+  "workspaces": [
+    "server",
+    "client",
+    "shared"
+  ],
+  "scripts": {
+    "dev:server": "npm run dev --workspace=server",
+    "dev:client": "npm run dev --workspace=client",
+    "build": "npm run build --workspace=server && npm run build --workspace=client",
+    "build:server": "npm run build --workspace=server",
+    "build:client": "npm run build --workspace=client",
+    "start:server": "npm run start --workspace=server",
+    "test": "node test-milestone4.cjs && node test-milestone5.cjs"
+  },
+  "keywords": [
+    "offline-ai",
+    "rag",
+    "ollama",
+    "study-assistant",
+    "education"
+  ],
+  "author": "",
+  "license": "MIT"
+}
