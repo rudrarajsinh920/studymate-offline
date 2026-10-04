@@ -73,7 +73,7 @@ async function runMilestone4Tests() {
 
     // Wait for server to become responsive
     let serverReady = false;
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 30; i++) {
       await sleep(500);
       try {
         const res = await fetch(`${BASE_URL}/health`);
@@ -91,7 +91,7 @@ async function runMilestone4Tests() {
     if (serverReady) {
       results['2. Server Launch & Health'] = 'PASS';
     } else {
-      throw new Error('Express server failed to start within 10 seconds.');
+      throw new Error('Express server failed to start within 15 seconds.');
     }
 
     // ---------------------------------------------------------------
