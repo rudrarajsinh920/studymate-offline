@@ -2,6 +2,7 @@ import { randomUUID } from 'crypto';
 import { config } from '../../config';
 import { ILlmProvider } from '../ai/ILlmProvider';
 import { OllamaLlmProvider } from '../ai/OllamaLlmProvider';
+import { HybridLlmProvider } from '../ai/HybridLlmProvider';
 import { RetrievalService, retrievalService, SearchResultItem } from './retrievalService';
 import { chatRepository, CitationSource, ChatSessionRecord } from '../../db/repositories/chatRepository';
 import { AskQuestionRequest, AskQuestionResponse, ExplanationMode } from 'studymate-shared';
@@ -25,7 +26,7 @@ export class TutorService {
   private readonly defaultMinScore = 0.28;
 
   constructor(llmProvider?: ILlmProvider, retrieval?: RetrievalService) {
-    this.llmProvider = llmProvider || new OllamaLlmProvider();
+    this.llmProvider = llmProvider || new HybridLlmProvider();
     this.retrievalService = retrieval || retrievalService;
   }
 

@@ -1,6 +1,7 @@
 import { documentRepository, ChunkWithEmbeddingRecord } from '../../db/repositories/documentRepository';
 import { IEmbeddingProvider } from '../ai/IEmbeddingProvider';
 import { OllamaEmbeddingProvider, EmbeddingServiceError } from '../ai/OllamaEmbeddingProvider';
+import { HybridEmbeddingProvider } from '../ai/HybridEmbeddingProvider';
 import { cosineSimilarity, DimensionMismatchError } from './vectorMath';
 
 export interface SearchQueryOptions {
@@ -35,7 +36,7 @@ export class RetrievalService {
   private readonly embeddingProvider: IEmbeddingProvider;
 
   constructor(embeddingProvider?: IEmbeddingProvider) {
-    this.embeddingProvider = embeddingProvider || new OllamaEmbeddingProvider();
+    this.embeddingProvider = embeddingProvider || new HybridEmbeddingProvider();
   }
 
   public getEmbeddingProvider(): IEmbeddingProvider {

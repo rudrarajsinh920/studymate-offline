@@ -27,3 +27,5 @@ services:
         value: "300000"
       - key: OLLAMA_MAX_TOKENS
         value: "512"
+      - key: GEMINI_API_KEY
+        sync: false

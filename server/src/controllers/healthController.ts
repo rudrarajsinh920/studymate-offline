@@ -89,6 +89,23 @@ export const getHealth = async (_req: Request, res: Response) => {
     };
   }
 
+  // If local Ollama is offline but a Cloud AI fallback key is provided, report as connected via cloud fallback
+  if (!ollamaStatus.connected && config.geminiApiKey && config.geminiApiKey.trim().length > 0) {
+    ollamaStatus = {
+      connected: true,
+      baseUrl: 'https://generativelanguage.googleapis.com',
+      configuredModels: {
+        llm: 'gemini-1.5-flash (cloud fallback)',
+        embed: 'text-embedding-004 (cloud fallback)',
+      },
+      detectedModels: ['gemini-1.5-flash', 'text-embedding-004'],
+      hasConfiguredLlm: true,
+      hasConfiguredEmbed: true,
+      message: 'Local Ollama is offline. Cloud AI Fallback (Gemini) is active.',
+      latencyMs: Date.now() - startTime,
+    };
+  }
+
   res.status(200).json({
     status: 'ok',
     timestamp: new Date().toISOString(),

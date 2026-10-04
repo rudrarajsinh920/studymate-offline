@@ -21,6 +21,7 @@ export interface AppConfig {
     timeoutMs: number;
     maxTokens: number;
   };
+  geminiApiKey?: string;
 }
 
 const rawDbPath = process.env.DATABASE_PATH || './data/studymate.db';
@@ -40,4 +41,5 @@ export const config: AppConfig = {
     timeoutMs: parseInt(process.env.OLLAMA_TIMEOUT_MS || '300000', 10),
     maxTokens: parseInt(process.env.OLLAMA_MAX_TOKENS || '512', 10),
   },
+  geminiApiKey: process.env.GEMINI_API_KEY || '',
 };

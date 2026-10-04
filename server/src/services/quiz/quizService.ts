@@ -14,6 +14,7 @@ import { documentRepository } from '../../db/repositories/documentRepository';
 import { config } from '../../config';
 import { ILlmProvider } from '../ai/ILlmProvider';
 import { OllamaLlmProvider } from '../ai/OllamaLlmProvider';
+import { HybridLlmProvider } from '../ai/HybridLlmProvider';
 import { RetrievalService, retrievalService } from '../rag/retrievalService';
 
 export class QuizGenerationError extends Error {
@@ -46,7 +47,7 @@ export class QuizService {
   private readonly retrievalService: RetrievalService;
 
   constructor(llmProvider?: ILlmProvider, retrieval?: RetrievalService) {
-    this.llmProvider = llmProvider || new OllamaLlmProvider();
+    this.llmProvider = llmProvider || new HybridLlmProvider();
     this.retrievalService = retrieval || retrievalService;
   }
 
