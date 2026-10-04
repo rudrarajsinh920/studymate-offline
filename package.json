@@ -14,6 +14,7 @@
     "build": "npm run build --workspace=server && npm run build --workspace=client",
     "build:server": "npm run build --workspace=server",
     "build:client": "npm run build --workspace=client",
+    "start": "npm run start --workspace=server",
     "start:server": "npm run start --workspace=server",
     "test": "node test-milestone4.cjs && node test-milestone5.cjs",
     "audit": "node scripts/audit_workflows.cjs"

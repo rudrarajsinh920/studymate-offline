@@ -1,3 +1,5 @@
+import path from 'path';
+import fs from 'fs';
 import express from 'express';
 import cors from 'cors';
 import { config } from './config';
@@ -28,20 +30,32 @@ app.use('/api', chatRouter);
 app.use('/api', plannerRouter);
 app.use('/api', quizRouter);
 
-// Root fallback / info
-app.get('/', (_req, res) => {
-  res.json({
-    name: 'StudyMate Offline API',
-    version: '0.1.0',
-    description: 'Privacy-focused, locally runnable AI study companion for students',
-    healthCheck: '/api/health',
-    documentsApi: '/api/documents',
-    retrievalApi: '/api/retrieval/search',
-    chatApi: '/api/chat/ask',
-    plannerApi: '/api/plans',
-    quizApi: '/api/quizzes',
+// Serve static client assets in production if built
+const clientDistPath = path.resolve(__dirname, '../../client/dist');
+if (fs.existsSync(clientDistPath)) {
+  app.use(express.static(clientDistPath));
+  app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api')) {
+      return next();
+    }
+    res.sendFile(path.join(clientDistPath, 'index.html'));
   });
-});
+} else {
+  // API info fallback if client is not built
+  app.get('/', (_req, res) => {
+    res.json({
+      name: 'StudyMate Offline API',
+      version: '0.1.0',
+      description: 'Privacy-focused, locally runnable AI study companion for students',
+      healthCheck: '/api/health',
+      documentsApi: '/api/documents',
+      retrievalApi: '/api/retrieval/search',
+      chatApi: '/api/chat/ask',
+      plannerApi: '/api/plans',
+      quizApi: '/api/quizzes',
+    });
+  });
+}
 
 // 404 handler
 app.use((_req, res) => {
