@@ -65,6 +65,10 @@ This document provides a turnkey production plan for recording the submission de
 
 ## 📸 Presentation Screenshots Guide
 
+> [!IMPORTANT]
+> **Privacy Safeguard for Submission Media:**
+> When capturing screenshots or video footage for hackathon submission (Devpost, GitHub, slides), strictly use public, open, or sample academic texts (e.g. `Biology_Lecture_Notes.pdf` or `Photosynthesis_Notes.txt`). Never display personal names, real student IDs, university credentials, or proprietary private course notes in recorded media.
+
 Capture the following 8 screenshots in PNG format (1920x1080 resolution, dark mode) to include in your Devpost submission gallery, GitHub `README.md`, or presentation slide deck:
 
 ### Screenshot 1: Overview & Ambient Dashboard
