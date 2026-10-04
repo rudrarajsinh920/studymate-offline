@@ -15,7 +15,8 @@
     "build:server": "npm run build --workspace=server",
     "build:client": "npm run build --workspace=client",
     "start:server": "npm run start --workspace=server",
-    "test": "node test-milestone4.cjs && node test-milestone5.cjs"
+    "test": "node test-milestone4.cjs && node test-milestone5.cjs",
+    "audit": "node scripts/audit_workflows.cjs"
   },
   "keywords": [
     "offline-ai",
